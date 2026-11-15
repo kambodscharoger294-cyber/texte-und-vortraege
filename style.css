@@ -96,7 +96,7 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 1.2rem;
   margin: 0.5rem 1rem 0;
 }
 .work-tabs .tab {
@@ -115,18 +115,6 @@ main {
   background: var(--ink);
   color: var(--paper-card);
   border-color: var(--ink);
-}
-/* sanftes Pulsieren, damit beide Werke-Tabs ins Auge fallen */
-@keyframes tab-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 138, 45, 0.0); transform: scale(1); }
-  50%      { box-shadow: 0 0 0 5px rgba(201, 138, 45, 0.28); transform: scale(1.03); }
-}
-.work-tabs .tab {
-  animation: tab-pulse 2.4s ease-in-out infinite;
-}
-.work-tabs .tab:nth-child(2) { animation-delay: 1.2s; }
-@media (prefers-reduced-motion: reduce) {
-  .work-tabs .tab { animation: none; }
 }
 
 /* Tabs */
