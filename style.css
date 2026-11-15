@@ -253,6 +253,12 @@ audio {
   background: #fff;
 }
 
+/* Auf Mobilgeräten: Inline-PDF-Viewer ausblenden –
+   dort öffnet „Text lesen (PDF)" den nativen mobilen PDF-Viewer */
+@media (max-width: 768px), (pointer: coarse) {
+  .pdf-view { display: none; }
+}
+
 /* Infografik */
 .infographic { margin-top: 1rem; }
 .infographic img {
