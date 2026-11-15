@@ -289,3 +289,10 @@ audio {
   font-size: 0.85rem;
   padding: 1rem 1rem 2.5rem;
 }
+.site-footer p {
+  margin: 0.2rem 0;
+}
+.site-footer .credit {
+  font-style: italic;
+  color: var(--amber);
+}
