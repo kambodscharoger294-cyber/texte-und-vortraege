@@ -1,0 +1,291 @@
+/* Papier-Look nach dem Vorbild der Kurs-PDFs:
+   gealtertes Papier, schiefergraue Serifen, dünne Bernstein-Akzente */
+
+:root {
+  --paper: #f1e9d6;
+  --paper-card: #f7f1e1;
+  --paper-dark: #e9dfc8;
+  --ink: #4d5563;
+  --ink-soft: #6f7684;
+  --amber: #c98a2d;
+  --amber-soft: #e3b664;
+  --line: #d9cba6;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 12% 8%,  rgba(160,130,80,0.10) 0%, transparent 45%),
+    radial-gradient(ellipse at 88% 15%, rgba(160,130,80,0.09) 0%, transparent 40%),
+    radial-gradient(ellipse at 20% 85%, rgba(140,110,70,0.10) 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 90%, rgba(140,110,70,0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 45%, rgba(255,250,235,0.5) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, .num {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.site-header {
+  text-align: center;
+  padding: 3.5rem 1rem 1.5rem;
+}
+.site-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  letter-spacing: 0.01em;
+}
+.subtitle {
+  color: var(--ink-soft);
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+}
+/* dünne Bernstein-Linie wie im Vorbild */
+.site-header h1::after {
+  content: "";
+  display: block;
+  width: 11rem;
+  height: 2px;
+  margin: 0.9rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+}
+
+.work { margin-top: 3rem; display: none; }
+.work.active { display: block; }
+.work > h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+.work > h2::after {
+  content: "";
+  display: block;
+  width: 7rem;
+  height: 1px;
+  margin: 0.8rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--amber-soft), transparent);
+}
+.byline {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  margin-top: 0.2rem;
+}
+
+/* Werk-Tabs oben */
+.work-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 1rem 0;
+}
+.work-tabs .tab {
+  border: 1px solid var(--line);
+  background: var(--paper-card);
+  padding: 0.55rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.work-tabs .tab:hover { border-color: var(--amber); color: var(--ink); }
+.work-tabs .tab.active {
+  background: var(--ink);
+  color: var(--paper-card);
+  border-color: var(--ink);
+}
+
+/* Tabs */
+.lang-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+}
+.lang-tabs .tab {
+  border: none;
+  background: transparent;
+  padding: 0.5rem 1.6rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-family: inherit;
+  border-bottom: 2px solid transparent;
+}
+.lang-tabs .tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--amber);
+}
+
+.lang-panel { display: none; }
+.lang-panel.active { display: block; }
+
+/* Abstract */
+.abstract {
+  max-width: 38rem;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+.abstract p {
+  margin: 0;
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.abstract p::before,
+.abstract p::after {
+  content: "";
+  display: block;
+  width: 2.2rem;
+  height: 1px;
+  background: var(--amber-soft);
+  margin: 1.1rem auto;
+}
+
+/* Karten */
+.card {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 2px 6px rgba(90, 70, 30, 0.08);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+/* Schaltflächen (Links) immer unten in der Karte,
+   Audio oben, PDF-Anzeige & Infografik dazwischen */
+.card .links { order: 10; margin-top: 1rem; }
+.card .pdf-view { order: 5; }
+.card .infographic { order: 6; }
+.card .num {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.5rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--amber-soft);
+  line-height: 1;
+}
+.card h3 {
+  margin: 0 0 0.9rem;
+  padding-right: 4rem;
+  font-size: 1.15rem;
+}
+
+audio {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 0.9rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+.btn {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn:hover { background: var(--paper-dark); border-color: var(--amber); }
+.btn.read {
+  background: var(--ink);
+  color: var(--paper-card);
+  border-color: var(--ink);
+}
+.btn.read:hover { background: var(--ink-soft); border-color: var(--ink-soft); }
+
+/* Standalone (nummernloses PDF) */
+.card.standalone { border-left: 3px solid var(--amber); }
+.hint {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  margin: 0 0 0.9rem;
+}
+
+/* PDF-Anzeige im Browser */
+.pdf-view { margin-top: 1rem; }
+.pdf-view summary,
+.infographic summary {
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+.pdf-view summary:hover,
+.infographic summary:hover { color: var(--ink); }
+.pdf-view iframe {
+  display: block;
+  width: 100%;
+  height: 75vh;
+  margin-top: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+}
+
+/* Infografik */
+.infographic { margin-top: 1rem; }
+.infographic img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-top: 0.8rem;
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 6px rgba(90, 70, 30, 0.10);
+}
+
+/* Quellen */
+.sources {
+  background: transparent;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.5rem;
+  margin: 1.8rem 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.sources h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.sources ul { margin: 0; padding-left: 1.2rem; }
+.sources li { margin-bottom: 0.4rem; }
+.sources a { color: var(--amber); }
+
+.site-footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  padding: 1rem 1rem 2.5rem;
+}
