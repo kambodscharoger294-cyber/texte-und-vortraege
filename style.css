@@ -100,21 +100,98 @@ main {
   margin: 0.5rem 1rem 0;
 }
 .work-tabs .tab {
-  border: 1px solid var(--line);
-  background: var(--paper-card);
-  padding: 0.55rem 1.4rem;
-  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  background: #2b2723;
+  padding: 1.05rem 1.3rem;
+  border-radius: 3px;
   font-size: 0.95rem;
   cursor: pointer;
-  color: var(--ink-soft);
+  color: rgba(241, 233, 214, 0.72);
   font-family: inherit;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
-.work-tabs .tab:hover { border-color: var(--amber); color: var(--ink); }
-.work-tabs .tab.active {
-  background: var(--ink);
+/* Super 8: Perforationsloecher oben und unten */
+.work-tabs .tab::before,
+.work-tabs .tab::after {
+  content: "";
+  position: absolute;
+  left: 0.4rem;
+  right: 0.4rem;
+  height: 0.3rem;
+  background-image: repeating-linear-gradient(90deg, var(--paper) 0 0.3rem, transparent 0.3rem 0.85rem);
+  opacity: 0.35;
+}
+.work-tabs .tab::before { top: 0.26rem; }
+.work-tabs .tab::after { bottom: 0.26rem; }
+.work-tabs .tab {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.35;
+  position: relative;
+}
+.work-tabs .tab-lang {
+  display: inline;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(241, 233, 214, 0.55);
+  margin-left: 0.35rem;
+  vertical-align: middle;
+}
+.work-tabs .tab-lang i {
+  font-style: normal;
+  line-height: 1;
+}
+.work-tabs .tab-lang i + i::before { content: "\b7\a0"; }
+.work-tabs .tab-src-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  white-space: nowrap;
+}
+.work-tabs .tab-src {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.7rem;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0.08rem 0.5rem;
+  border-radius: 0.6rem;
+  background: rgba(241, 233, 214, 0.08);
+}
+.work-tabs .tab-src svg {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.8;
+}
+.work-tabs .tab:hover {
+  background: #35302a;
   color: var(--paper-card);
-  border-color: var(--ink);
+}
+.work-tabs .tab.active {
+  border-color: var(--amber);
+  color: var(--paper-card);
+  box-shadow: 0 0 0.55rem rgba(201, 138, 45, 0.35);
+  font-weight: 600;
+}
+.work-tabs .tab.active .tab-src {
+  font-weight: 400;
+}
+
+/* Physik-Tabs: kühler Schiefer-Ton statt Bernstein */
+.work-tabs .tab.phys .tab-src {
+  background: rgba(160, 180, 210, 0.10);
 }
 
 /* Tabs */
@@ -301,4 +378,16 @@ audio {
 .site-footer .credit {
   font-style: italic;
   color: var(--amber);
+}
+
+/* Film-Kachel (z. B. Chi-Power-Demonstration) */
+.card video.film {
+  order: 2;
+  width: 100%;
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #000;
+  display: block;
+  max-height: 26rem;
 }
