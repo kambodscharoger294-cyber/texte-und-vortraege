@@ -130,6 +130,21 @@ main {
   line-height: 1.35;
   position: relative;
 }
+.work-tabs .tab-title {
+  display: inline-flex;
+  align-items: center;
+}
+.work-tabs .tab-icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  margin-right: 0.4em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
 .work-tabs .tab-lang {
   display: inline;
   font-size: 0.58rem;
